@@ -28,11 +28,7 @@
     <ul>
         <li><a href="{{ route('welcome') }}">Welcome Page</a></li>
         <li><a href="{{ route('users.all') }}">Utilizadores</a></li>
-        <li><a href="{{ route('users.add') }}">Adicionar Utilizadores</a></li>
         <li><a href="{{ route('tasks.all') }}">Tarefas</a></li>
-        <li><a href="{{ route('tasks.add') }}">Adicionar Tarefa</a></li>
         <li><a href="{{ route('gifts.all') }}">Presentes</a></li>
-        <li><a href="{{ route('gifts.add') }}">Adicionar Presentes</a></li>
-
     </ul>
 @endsection

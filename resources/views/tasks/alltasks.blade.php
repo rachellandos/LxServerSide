@@ -5,7 +5,7 @@
 @extends('layouts.fo')
 
 @section('content')
-    <h1>Aqui vamos carregar todas as tarefas</h1>
+    <h1>Todas as tarefas ⚙️</h1>
     @if (session('message'))
         <div class="alert theme-success">{{ session('message') }}</div>
     @endif

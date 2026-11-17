@@ -5,7 +5,7 @@
 @extends('layouts.fo')
 
 @section('content')
-    <h1>Aqui vamos carregar todos os utilizadores</h1>
+    <h1>Todos os utilizadores 👤</h1>
 
     <h4>Users sem estarem carregados da base de dados</h4>
     <ul>
