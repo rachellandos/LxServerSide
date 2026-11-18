@@ -9,7 +9,11 @@
     @if (session('message'))
         <div class="alert theme-success">{{ session('message') }}</div>
     @endif
-    <a class="btn-solid theme-warning" href=" {{route('tasks.add')}} ">Adicionar Tarefa</a>
+    
+    <div class="py-3"></div>
+    <a class="btn-solid theme-warning" href=" {{ route('tasks.add') }} ">Adicionar Tarefa</a>
+    <div class="py-3"></div>
+
     <h4>Listagem de tarefas:</h4>
     <table class="table theme-accent">
         <thead>

@@ -15,8 +15,8 @@ class UserController extends Controller
     {
         $usersWDB = $this->loadUsersWDB();
 
-        $usersFromDB = User::select('id', 'name', 'address', 'email', 'nif')
-            ->get();
+        $query = User::select('id', 'name', 'address', 'email', 'nif');
+            $usersFromDB=$query->get();
 
         // dd( $usersFromDB);
 

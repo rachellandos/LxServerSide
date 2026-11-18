@@ -9,7 +9,9 @@
     @if (session('message'))
         <div class="alert theme-success">{{ session('message') }}</div>
     @endif
+    <div class="py-3"></div>
     <a class="btn-solid theme-warning" href=" {{ route('gifts.add') }} ">Adicionar Prendas</a>
+    <div class="py-3"></div>
     <h4>Listagem de Prenda:</h4>
     <table class="table theme-accent">
         <thead>

@@ -7,6 +7,7 @@
     <p><b>Valor gasto (€): </b>{{ $giftInfo->spentValue }}</p>
     <p><b>Nome da Pessoa: </b>{{ $giftInfo->user_name }}</p>
 
+    <div class="py-4">
     <h3>Editar Prenda </h3>
     <form method="POST" action="{{ route('gifts.update') }}">
         @method('PUT')
@@ -59,4 +60,5 @@
 
         <button type="submit" class="btn-solid theme-accent">Submit</button>
     </form>
+    </div>
 @endsection

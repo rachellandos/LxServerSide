@@ -3,7 +3,7 @@
 @section('content')
     <h1>Adicionar Utilizadores</h1>
 
-    <form method="POST" action="{{ route('users.store')}}">
+    <form method="POST" action="{{ route('users.store') }}">
         @csrf
         <div class="mb-3">
             <label for="exampleInputName1" class="form-label">Nome</label>
@@ -23,10 +23,17 @@
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Password</label>
             <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+            @error('password')
+                <p>Password inválida</p>
+            @enderror
         </div>
-        @error('password')
-            <p>Password inválida</p>
-        @enderror
+        <div class="mb-3">
+            <label for="nif" class="form-label">NIF</label>
+            <input type="text" name="nif" class="form-control" id="nif" aria-describedby="nifHelp">
+            @error('name')
+                <p>NIF inválido</p>
+            @enderror
+        </div>
         <button type="submit" class="btn-solid theme-primary">Submit</button>
     </form>
 @endsection

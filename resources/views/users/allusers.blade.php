@@ -13,11 +13,20 @@
             <li>{{ $user['name'] }}-->{{ $user['email'] }}</li>
         @endforeach
     </ul>
+    <div class="py-3"></div>
 
     @if (session('message'))
         <div class="alert theme-success">{{ session('message') }}</div>
     @endif
     <a class="btn-solid theme-warning" href=" {{ route('users.add') }} ">Adicionar Utilizador</a>
+    <div class="py-3"></div>
+
+    <form action="" method="get">
+        <input type="text" name="search">
+        <button class="btn-solid btn-secondary" type="submit">Procurar</button>
+    </form>
+
+    <div class="py-3"></div>
     <h4>Utilizadores da base de dados</h4>
     <table class="table theme-accent">
         <thead>
