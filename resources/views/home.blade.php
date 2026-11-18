@@ -15,6 +15,10 @@
 
     <h2>Olá {{ isset($courseName) ? $courseName : 'user' }}</h2>
     <h5>O contacto é o {{ $contactInfo['name'] }} - {{ $contactInfo['contact'] }}</h5>
+
+    @auth
+        <h2>Olá, {{ Auth::user()->name }}</h2>
+    @endauth
     <h3>Alunos da turma {{ $cesae_info['name'] }} </h3>
     <ul>
         @if (@isset($students))

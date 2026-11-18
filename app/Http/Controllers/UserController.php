@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 // use Illuminate\Support\Facades\DB;
 
@@ -15,8 +14,16 @@ class UserController extends Controller
     {
         $usersWDB = $this->loadUsersWDB();
 
+        $searchPar = request()->query('search') ? request()->query('search') : null;
+
         $query = User::select('id', 'name', 'address', 'email', 'nif');
-            $usersFromDB=$query->get();
+
+        if ($searchPar) {
+            $query->where('name','LIKE' , "%{$searchPar}%")
+            ->orWhere('email','LIKE',"%{$searchPar}%");
+        }
+
+        $usersFromDB = $query->get();
 
         // dd( $usersFromDB);
 
@@ -35,14 +42,16 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required|max:50',
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:8'
+            'password' => 'required|min:8',
+            'nif' => 'required',
         ]);
 
         // depois de validados, inserir na bd
         User::insert([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password)
+            'password' => Hash::make($request->password),
+            'nif' => $request->nif
         ]);
 
         return redirect()->route('users.all')->with('message', 'Utilizador adicionado com sucesso!');

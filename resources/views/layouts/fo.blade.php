@@ -14,28 +14,64 @@
 </head>
 
 <body>
-    <nav class="navbar bg-3 sm:navbar-expand fg-2 ">
+    <nav class="navbar md:navbar-expand bg-3">
         <div class="container-fluid">
             <button class="btn-icon navbar-toggler" type="button" data-bs-toggle="drawer"
-                data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                data-bs-target="#navbarDrawer" aria-controls="navbarDrawer" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon" aria-hidden="true"></span>
             </button>
-            <dialog class="drawer drawer-end" tabindex="-1" id="navbarNavAltMarkup"
-                aria-labelledby="navbarNavAltMarkupLabel">
+            <dialog class="drawer drawer-end" tabindex="-1" id="navbarDrawer" aria-labelledby="navbarDrawerLabel">
                 <div class="drawer-header">
-                    <h5 class="drawer-title" id="navbarNavAltMarkupLabel">Menu</h5>
+                    <h5 class="drawer-title" id="navbarDrawerLabel">Menu</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="drawer" aria-label="Close"></button>
                 </div>
-                <div class="drawer-body">
-                    <div class="nav nav-pills navbar-nav">
-                        <a class="nav-link" aria-current="page" href="{{ route('home') }}">Home</a>
-                        <a class="nav-link" href="{{ route('users.all') }}">Utilizadores</a>
-                        <a class="nav-link" href="{{ route('tasks.all') }}">Tarefas</a>
-                        <a class="nav-link" href="{{ route('gifts.all') }}">Prendas</a>
-                    </div>
+                <div class="drawer-body mb-2 md:mb-0">
+                    <ul class="nav nav-pills navbar-nav me-auto bg-1">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="{{ route('home') }}">Home</a>
+                        </li>
+                        <li class="nav-item">
+
+                            <a class="nav-link" href="{{ route('users.all') }}">Utilizadores</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('tasks.all') }}">Tarefas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('gifts.all') }}">Prendas</a>
+                        </li>
+                    </ul>
+
+                    @if (Route::has('login'))
+                        <nav class="navbar-nav nav-pills d-flex flex-row justify-content-center gap-4">
+                            @auth
+                                <a href="{{ url('/dashboard') }}"
+                                    class="nav-link px-5 text-body border border-secondary rounded-pill leading-normal">
+                                    Dashboard
+                                </a>
+                                <form action="{{route('logout')}}" method="post">
+                                    @csrf
+                                    <button type="submit" class="btn-solid theme-warning rounded-pill">Logout</button>
+                                </form>
+                            @else
+                                <a href="{{ route('login') }}"
+                                    class="nav-link px-5 text-body border border-secondary rounded-pill leading-normal">
+                                    Log in
+                                </a>
+
+                                @if (Route::has('users.add'))
+                                    <a href="{{ route('users.add') }}"
+                                        class="nav-link px-5 text-body border border-secondary rounded-pill leading-normal">
+                                        Register
+                                    </a>
+                                @endif
+                            @endauth
+                        </nav>
+                    @endif
                 </div>
-            </dialog>
+        </div>
+        </dialog>
         </div>
     </nav>
 

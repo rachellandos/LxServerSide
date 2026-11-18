@@ -11,7 +11,7 @@ Route::get('/', [UtilController::class, 'loadWelcome'])->name('welcome');
 Route::get('/hello/{message}', [UtilController::class, 'helloMessage']);
 
 // rota de homepage
-Route::get('/homepage', [UtilController::class, 'loadHomepage'])->name('home');
+Route::get('/home', [UtilController::class, 'loadHomepage'])->name('home');
 
 
 
@@ -22,7 +22,7 @@ Route::get('/homepage', [UtilController::class, 'loadHomepage'])->name('home');
 Route::get('/users', [UserController::class, 'allUsers']) ->name('users.all');
 
 // rota de adicionar utilizadores
-Route::get('/users/add', [UserController::class, 'AddUsers'])->name('users.add');
+Route::get('/users-add', [UserController::class, 'AddUsers'])->name('users.add');
 
 // rota de registar users no servidor
 Route::post('/store-users', [UserController::class, 'storeUser'])->name('users.store');
@@ -31,7 +31,7 @@ Route::post('/store-users', [UserController::class, 'storeUser'])->name('users.s
 Route::get('/delete-users/{id}',[UserController::class, 'deleteUsers'] )->name('users.delete');
 
 // rota de ver ou editar users
-Route::get('/edit-users/{id}',[UserController::class, 'editUsers'] )->name('users.edit');
+Route::get('/edit-users/{id}',[UserController::class, 'editUsers'] )->name('users.edit')->middleware('auth');
 
 // rota de registar o edit no servidor
 Route::put('/update-users', [UserController::class, 'updateUser'])->name('users.update');
@@ -44,7 +44,7 @@ Route::put('/update-users', [UserController::class, 'updateUser'])->name('users.
 Route::get('/tasks', [TaskController::class, 'allTasks']) ->name('tasks.all');
 
 // rota de adicionar tarefas
-Route::get('/tasks/add', [TaskController::class, 'addTasks'])->name('tasks.add');
+Route::get('/tasks-add', [TaskController::class, 'addTasks'])->name('tasks.add');
 
 // rota de registar users no servidos
 Route::post('/store-tasks', [TaskController::class, 'storeTask'])->name('tasks.store');
@@ -61,7 +61,7 @@ Route::get('/edit-tasks/{id}',[TaskController::class, 'editTasks'] )->name('task
 Route::get('/gifts', [GiftController::class, 'allGifts']) ->name('gifts.all');
 
 // rota de adicionar presente
-Route::get('/gifts/add', [GiftController::class, 'addGifts'])->name('gifts.add');
+Route::get('/gifts-add', [GiftController::class, 'addGifts'])->name('gifts.add');
 
 // rota de registar presente no servidos
 Route::post('/store-gifts', [GiftController::class, 'storeGift'])->name('gifts.store');

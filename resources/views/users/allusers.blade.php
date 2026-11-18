@@ -14,10 +14,10 @@
         @endforeach
     </ul>
     <div class="py-3"></div>
-
     @if (session('message'))
         <div class="alert theme-success">{{ session('message') }}</div>
     @endif
+    <div class="py-3"></div>
     <a class="btn-solid theme-warning" href=" {{ route('users.add') }} ">Adicionar Utilizador</a>
     <div class="py-3"></div>
 
@@ -36,7 +36,9 @@
                 <th scope="col">Email</th>
                 <th scope="col">Address</th>
                 <th scope="col">NIF</th>
-                <th></th>
+                @auth
+                    <th></th>
+                @endauth
                 <th></th>
             </tr>
         </thead>
@@ -48,7 +50,9 @@
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->address }}</td>
                     <td>{{ $user->nif }}</td>
-                    <td><a href="{{ route('users.edit', $user->id) }}" class="btn-solid theme-info">Ver/Editar</a></td>
+                    @auth
+                        <td><a href="{{ route('users.edit', $user->id) }}" class="btn-solid theme-info">Ver/Editar</a></td>
+                    @endauth
                     <td><a href="{{ route('users.delete', $user->id) }}" class="btn-solid theme-danger">Apagar</a></td>
                 </tr>
             @endforeach

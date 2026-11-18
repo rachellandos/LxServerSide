@@ -8,6 +8,6 @@
 </head>
 <body>
 
-    <h5>Estaás perdido? Volte a <a href="{{route('home')}}">Homepage</a></h5>
+    <h5>Estás perdido? Volta a <a href="{{route('home')}}">Homepage</a> 🗺️ </h5>
 </body>
 </html>
