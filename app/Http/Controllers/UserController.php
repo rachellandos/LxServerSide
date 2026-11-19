@@ -19,8 +19,8 @@ class UserController extends Controller
         $query = User::select('id', 'name', 'address', 'email', 'nif');
 
         if ($searchPar) {
-            $query->where('name','LIKE' , "%{$searchPar}%")
-            ->orWhere('email','LIKE',"%{$searchPar}%");
+            $query->where('name', 'LIKE', "%{$searchPar}%")
+                ->orWhere('email', 'LIKE', "%{$searchPar}%");
         }
 
         $usersFromDB = $query->get();
@@ -51,7 +51,9 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'nif' => $request->nif
+            'nif' => $request->nif,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
 
         return redirect()->route('users.all')->with('message', 'Utilizador adicionado com sucesso!');
@@ -82,6 +84,7 @@ class UserController extends Controller
             'name' => $request->name,
             'address' => $request->address,
             'nif' => $request->nif,
+            'updated_at' => now(),
         ]);
 
         return redirect()->route('users.all')->with('message', 'User actualizado com sucesso!');

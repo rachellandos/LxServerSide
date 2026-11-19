@@ -1,17 +1,18 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GiftController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UtilController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [UtilController::class, 'loadWelcome'])->name('welcome');
+Route::get('/', [UtilController::class, 'home'])->name('welcome');
 
 Route::get('/hello/{message}', [UtilController::class, 'helloMessage']);
 
 // rota de homepage
-Route::get('/home', [UtilController::class, 'loadHomepage'])->name('home');
+Route::get('/home', [UtilController::class, 'home'])->name('home');
 
 
 
@@ -75,6 +76,11 @@ Route::get('/edit-gifts/{id}',[GiftController::class, 'editGifts'] )->name('gift
 
 // rota de registar o edit no servidor
 Route::put('/update-gifts', [GiftController::class, 'updateGift'])->name('gifts.update');
+
+//******************************************** */
+// rotas de dashboard
+//******************************************** */
+Route::get('/dashboard', [DashboardController::class, 'dashboard']) ->name('dashboard')->middleware('auth');;
 
 //******************************************** */
 // rota fallback

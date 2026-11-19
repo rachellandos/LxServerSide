@@ -46,11 +46,11 @@
                     @if (Route::has('login'))
                         <nav class="navbar-nav nav-pills d-flex flex-row justify-content-center gap-4">
                             @auth
-                                <a href="{{ url('/dashboard') }}"
+                                <a href="{{ route('dashboard') }}"
                                     class="nav-link px-5 text-body border border-secondary rounded-pill leading-normal">
                                     Dashboard
                                 </a>
-                                <form action="{{route('logout')}}" method="post">
+                                <form action="{{ route('logout') }}" method="post">
                                     @csrf
                                     <button type="submit" class="btn-solid theme-warning rounded-pill">Logout</button>
                                 </form>

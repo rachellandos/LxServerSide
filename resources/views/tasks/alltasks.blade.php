@@ -6,13 +6,14 @@
 
 @section('content')
     <h1>Todas as tarefas ⚙️</h1>
-    @if (session('message'))
-        <div class="alert theme-success">{{ session('message') }}</div>
-    @endif
-    
-    <div class="py-3"></div>
-    <a class="btn-solid theme-warning" href=" {{ route('tasks.add') }} ">Adicionar Tarefa</a>
-    <div class="py-3"></div>
+    <div class="py-2">
+        @if (session('message'))
+            <div class="alert theme-success">{{ session('message') }}</div>
+        @endif
+    </div>
+    <div class="py-2">
+        <a class="btn-solid theme-warning" href=" {{ route('tasks.add') }} ">Adicionar Tarefa</a>
+    </div>
 
     <h4>Listagem de tarefas:</h4>
     <table class="table theme-accent">
