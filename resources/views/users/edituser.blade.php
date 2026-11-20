@@ -7,10 +7,10 @@
     <p><b>NIF: </b>{{ $userInfo->nif }}</p>
     <div>
         <h4>Editar Utilizador </h4>
-        <form method="POST" action="{{ route('users.update') }}">
+        <form method="POST" enctype="multipart/form-data" action="{{ route('users.update') }}">
             @method('PUT')
             @csrf
-            <input type="hidden" name="id" value="{{$userInfo->id}}">
+            <input type="hidden" name="id" value="{{ $userInfo->id }}">
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Nome</label>
                 <input value="{{ $userInfo->name }}" required type="text" name="name" class="form-control"
@@ -32,17 +32,23 @@
 
             <div class="mb-3">
                 <label for="address" class="form-label">Morada</label>
-                <input value="{{ $userInfo->address }}" type="text" name="address" class="form-control"
-                    id="address" aria-describedby="addressHelp">
+                <input value="{{ $userInfo->address }}" type="text" name="address" class="form-control" id="address"
+                    aria-describedby="addressHelp">
             </div>
 
             <div class="mb-3">
                 <label for="nif" class="form-label">NIF</label>
-                <input value="{{ $userInfo->nif }}" type="text" name="nif" class="form-control"
-                    id="nif" aria-describedby="nifHelp">
+                <input value="{{ $userInfo->nif }}" type="text" name="nif" class="form-control" id="nif"
+                    aria-describedby="nifHelp">
+            </div>
+
+            <div class="mb-3">
+                <label for="photo"><b>Fotografía: </b></label>
+                <input type="file" name="photo" id="" accept="image/">
             </div>
 
             <button type="submit" class="btn-solid theme-accent">Submit</button>
+
         </form>
     </div>
 @endsection

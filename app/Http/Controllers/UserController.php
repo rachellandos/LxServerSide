@@ -6,6 +6,7 @@ use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 // use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
@@ -16,7 +17,7 @@ class UserController extends Controller
 
         $searchPar = request()->query('search') ? request()->query('search') : null;
 
-        $query = User::select('id', 'name', 'address', 'email', 'nif');
+        $query = User::select('id', 'name', 'address', 'email', 'nif', 'photo');
 
         if ($searchPar) {
             $query->where('name', 'LIKE', "%{$searchPar}%")
@@ -69,7 +70,7 @@ class UserController extends Controller
 
     public function editUsers(int $id)
     {
-        $userInfo = User::where('id', $id)->select('name', 'email', 'id', 'address', 'nif')->first();
+        $userInfo = User::where('id', $id)->select('name', 'email', 'id', 'address', 'nif', 'photo')->first();
 
         return view('users.edituser', compact('userInfo'));
     }
@@ -77,13 +78,20 @@ class UserController extends Controller
     public function updateUser(Request $request)
     {
         $request->validate([
-            'name' => 'required|max:50'
+            'name' => 'required|max:50',
+            'photo' => 'image'
         ]);
+
+        if ($request->hasFile('photo')) {
+            //armazenar no storage e guarda o caminho numa var
+            $photo = Storage::putFile('userPhotos', $request->photo);
+        }
 
         User::where('id', $request->id)->update([
             'name' => $request->name,
             'address' => $request->address,
             'nif' => $request->nif,
+            'photo' => isset($photo) ? $photo : null,
             'updated_at' => now(),
         ]);
 

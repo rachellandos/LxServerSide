@@ -14,9 +14,11 @@
             @endforeach
         </ul>
     </div>
+    <div class="py-2">
         @if (session('message'))
             <div class="alert theme-success py-2">{{ session('message') }}</div>
         @endif
+    </div>
     <form action="" method="get">
         <input type="text" name="search">
         <button class="btn-solid btn-secondary" type="submit">Procurar</button>
@@ -26,6 +28,9 @@
         <table class="table theme-accent">
             <thead>
                 <tr>
+                    @auth
+                        <th></th>
+                    @endauth
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
@@ -42,6 +47,11 @@
             <tbody>
                 @foreach ($usersFromDB as $user)
                     <tr>
+                        {{-- {{ dd($user->photo) }} --}}
+
+                        <td><img class="photo-table"
+                                src="{{ $user->photo ? asset('storage/' . $user->photo) : asset('images/nophoto.png') }}"
+                                alt=""> </td>
                         <th scope="row"> {{ $user->id }} </th>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
