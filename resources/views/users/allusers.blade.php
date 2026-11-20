@@ -28,10 +28,10 @@
         <table class="table theme-accent">
             <thead>
                 <tr>
+                    <th scope="col">#</th>
                     @auth
                         <th></th>
                     @endauth
-                    <th scope="col">#</th>
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
                     <th scope="col">Address</th>
@@ -48,11 +48,12 @@
                 @foreach ($usersFromDB as $user)
                     <tr>
                         {{-- {{ dd($user->photo) }} --}}
-
-                        <td><img class="photo-table"
-                                src="{{ $user->photo ? asset('storage/' . $user->photo) : asset('images/nophoto.png') }}"
-                                alt=""> </td>
                         <th scope="row"> {{ $user->id }} </th>
+                        @auth
+                            <td><img class="photo-table"
+                                    src="{{ $user->photo ? asset('storage/' . $user->photo) : asset('images/nophoto.png') }}"
+                                    alt=""> </td>
+                        @endauth
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->address }}</td>

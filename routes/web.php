@@ -7,12 +7,12 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\UtilController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [UtilController::class, 'home'])->name('welcome');
+Route::get('/', [UtilController::class, 'loadHomepage'])->name('welcome');
 
 Route::get('/hello/{message}', [UtilController::class, 'helloMessage']);
 
 // rota de homepage
-Route::get('/home', [UtilController::class, 'home'])->name('home');
+Route::get('/home', [UtilController::class, 'loadHomepage'])->name('home');
 
 
 
